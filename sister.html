@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Sister ✨</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Dancing+Script:wght@700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            /* Soft, Decent Gradient (Blue to Pink) */
+            background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 50%, #f68084 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Nunito', sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* Background Decorations */
+        .circles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .circles li {
+            position: absolute;
+            display: block;
+            list-style: none;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.4);
+            animation: float 25s linear infinite;
+            bottom: -150px;
+            border-radius: 50%;
+        }
+        .circles li:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
+        .circles li:nth-child(2) { left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
+        .circles li:nth-child(3) { left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; }
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.90);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border: 3px solid #fff;
+        }
+
+        /* --- 4 PHOTO GRID STYLE (Album Look) --- */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 2 Columns */
+            gap: 8px; /* Space between photos */
+            margin-bottom: 20px;
+            padding: 5px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .sister-img {
+            width: 100%;
+            aspect-ratio: 1 / 1; /* Perfect Square */
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid #ffe0e6;
+            transition: transform 0.3s;
+        }
+
+        .sister-img:hover {
+            transform: scale(1.05);
+            z-index: 2;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .slide {
+            display: none;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .active {
+            display: block;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #4facfe;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 0px white;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .btn {
+            background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+            border: none;
+            padding: 12px 35px;
+            color: white;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(79, 172, 254, 0.4);
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(79, 172, 254, 0.6);
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <ul class="circles">
+        <li></li><li></li><li></li><li></li><li></li>
+    </ul>
+
+    <canvas id="canvas"></canvas>
+
+    <div class="container">
+        
+        <!-- 4 Photos Collage -->
+        <!-- Yahan photos ki link paste karein -->
+        <div class="photo-grid">
+            <img src="https://freeimage.org/images/2025/12/28/WhatsApp-Image-2025-12-28-at-4.03.30-PM.jpeg
+" class="sister-img">
+            <img src="https://freeimage.org/images/2025/12/28/WhatsApp-Image-2025-12-28-at-4.03.31-PM-1.jpeg
+" class="sister-img">
+            <img src="https://freeimage.org/images/2025/12/28/WhatsApp-Image-2025-12-28-at-4.03.30-PM-1.jpeg
+" class="sister-img">
+            <img src="https://freeimage.org/images/2025/12/28/WhatsApp-Image-2025-12-28-at-4.03.31-PM.jpeg
+" class="sister-img">
+        </div>
+
+        <!-- Slide 1 -->
+        <div class="slide active" id="slide1">
+            <h1>Meri Pyari Behna 🌸</h1>
+            <p>Tumhare liye New Year ka ek chhota sa surprise...</p>
+            <button class="btn" onclick="nextSlide(2)">Open Gift 🎁</button>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide" id="slide2">
+            <h1>Ek Baat Bolni Thi...</h1>
+            <p>2026 shuru hone wala hai, aur main chahta hu ye saal tumhare liye best ho.</p>
+            <button class="btn" onclick="nextSlide(3)">Aage suno... ✨</button>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide" id="slide3">
+            <h1>Thank You ❤️</h1>
+            <p>Mera hamesha khayal rakhne ke liye aur mere liye stand lene ke liye.</p>
+            <p style="font-size: 0.9rem; color: #888;">(you are the best one!)</p>
+            <button class="btn" onclick="nextSlide(4)">Next ➡️</button>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide" id="slide4">
+            <h1>Smile Please! 😊</h1>
+            <p>Tumhari smile se ghar mein ronak rehti hai. <br>Hamesha aise hi khush rehna.</p>
+            <button class="btn" onclick="nextSlide(5)">Meri Wish 💫</button>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="slide" id="slide5">
+            <h1>Blessings 🤲</h1>
+            <p>Bhagwan kare is naye saal mein tumhari saari wishes poori ho jayein.</p>
+            <button class="btn" onclick="nextSlide(6)">Welcome 2026 🚀</button>
+        </div>
+
+        <!-- Slide 6: Grand Finale -->
+        <div class="slide" id="slide6">
+            <h1 style="font-size: 2.5rem; color: #ff0055;">HAPPY NEW YEAR<br>2026! 🎉</h1>
+            <p>Yeh saal dher saari khushiyan laye! 💖</p>
+            <p style="font-size: 1rem; color: #333;"><strong>(vaise party kab de rahi ho? 😜)</strong></p>
+        </div>
+
+    </div>
+
+    <script>
+        function nextSlide(slideNumber) {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(slide => slide.classList.remove('active'));
+
+            const target = document.getElementById('slide' + slideNumber);
+            if(target) {
+                target.classList.add('active');
+            }
+
+            if(slideNumber === 6) {
+                startConfetti();
+            }
+        }
+
+        // --- Decent Confetti Logic ---
+        function startConfetti() {
+            const canvas = document.getElementById("canvas");
+            const ctx = canvas.getContext("2d");
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            let particles = [];
+            const colors = ['#a1c4fd', '#ff9a9e', '#84fab0', '#f68084', '#fff'];
+
+            function Particle(x, y, color) {
+                this.x = x;
+                this.y = y;
+                this.color = color;
+                this.velocity = { x: (Math.random() - 0.5) * 6, y: (Math.random() - 0.5) * 6 };
+                this.alpha = 1;
+                this.friction = 0.96;
+            }
+            
+            Particle.prototype.draw = function() {
+                ctx.globalAlpha = this.alpha;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 4, 0, Math.PI * 2, false);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+            
+            Particle.prototype.update = function() {
+                this.velocity.x *= this.friction;
+                this.velocity.y *= this.friction;
+                this.x += this.velocity.x;
+                this.y += this.velocity.y;
+                this.alpha -= 0.01;
+                this.draw();
+            }
+            
+            function animate() {
+                requestAnimationFrame(animate);
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                particles.forEach((particle, i) => {
+                    if (particle.alpha > 0) {
+                        particle.update();
+                    } else {
+                        particles.splice(i, 1);
+                    }
+                });
+            }
+
+            function shoot() {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height / 2;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                for (let i = 0; i < 30; i++) {
+                    particles.push(new Particle(x, y, color));
+                }
+            }
+            
+            animate();
+            setInterval(shoot, 500); 
+        }
+    </script>
+</body>
+</html>
