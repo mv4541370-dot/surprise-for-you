@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Brother 😎</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@300;600&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            /* Cool Blue Night Theme */
+            background: linear-gradient(135deg, #000428, #004e92);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            text-align: center;
+            color: white;
+        }
+
+        /* Abstract Tech Background */
+        .bg-tech {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .bg-tech li {
+            position: absolute;
+            display: block;
+            list-style: none;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            animation: moveUp 15s linear infinite;
+            bottom: -150px;
+        }
+        .bg-tech li:nth-child(1) { left: 10%; width: 80px; height: 80px; animation-delay: 0s; background: rgba(0, 210, 255, 0.1); }
+        .bg-tech li:nth-child(2) { left: 20%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 7s; }
+        .bg-tech li:nth-child(3) { left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
+        
+        @keyframes moveUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-800px) rotate(360deg); opacity: 0; }
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* --- 4 PHOTO GRID STYLE --- */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 2 Columns */
+            gap: 10px; /* Space between photos */
+            margin-bottom: 20px;
+        }
+
+        .bro-img {
+            width: 100%;
+            aspect-ratio: 1 / 1; /* Forces perfect square */
+            object-fit: cover;   /* Ensures photo doesn't stretch */
+            border-radius: 10px; /* Slight rounded corners */
+            border: 2px solid #00d2ff; /* Neon Border */
+            box-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .bro-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.8);
+        }
+
+        .slide {
+            display: none;
+            animation: zoomIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .active {
+            display: block;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: #00d2ff;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.8);
+        }
+
+        p {
+            font-size: 1rem;
+            color: #e0e0e0;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .highlight {
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .btn {
+            background: linear-gradient(90deg, #00d2ff, #3a7bd5);
+            border: none;
+            padding: 10px 30px;
+            color: white;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+            font-family: 'Orbitron', sans-serif;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(0, 210, 255, 0.8);
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <ul class="bg-tech">
+        <li></li><li></li><li></li><li></li>
+    </ul>
+
+    <canvas id="canvas"></canvas>
+
+    <div class="container">
+        
+        <!-- YAHAN PHOTOS LAGANI HAIN -->
+        <!-- 4 Photos ki Links yahan paste karein -->
+        <div class="photo-grid">
+            <img src="https://www.freeimage.org/images/2025/12/29/1000043118.jpg" class="bro-img">
+            <img src="https://www.freeimage.org/images/2025/12/29/1000043117.jpg" class="bro-img">
+            <img src="https://www.freeimage.org/images/2025/12/29/1000043116.jpg" class="bro-img">
+            <img src="https://www.freeimage.org/images/2025/12/29/1000043115.jpg" class="bro-img">
+        </div>
+
+        <!-- Slide 1 -->
+        <div class="slide active" id="slide1">
+            <h1>Oye Hero! 😎</h1>
+            <p>Mere Bhai ke liye ek special New Year Message...</p>
+            <button class="btn" onclick="nextSlide(2)">Check It 🤘</button>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide" id="slide2">
+            <h1>Listen Bro...</h1>
+            <p>2026 aane wala hai, bas ek baat bolni thi.</p>
+            <button class="btn" onclick="nextSlide(3)">Kya hai? 🤔</button>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide" id="slide3">
+            <h1>Support System 💪</h1>
+            <p>Chahe kuch bhi ho, tu hamesha peeche khada rehta hai.</p>
+            <p style="font-size: 0.9rem;">(Bas paise time pe de diya kar 😜)</p>
+            <button class="btn" onclick="nextSlide(4)">Next ➡️</button>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide" id="slide4">
+            <h1>Partner in Crime 🤜🤛</h1>
+            <p>Tere bina ghar suna lagta hai aur masti adhuri.</p>
+            <p>You are not just my brother, you are my <span class="highlight">Best Friend</span>.</p>
+            <button class="btn" onclick="nextSlide(5)">My Wish 🚀</button>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="slide" id="slide5">
+            <h1>Big Goals 🏆</h1>
+            <p>Is saal tu phod dega! <br>Bhagwan kare tujhe bohot saara <span class="highlight">Success, Paisa aur Power</span> mile.</p>
+            <button class="btn" onclick="nextSlide(6)">Start 2026 🔥</button>
+        </div>
+
+        <!-- Slide 6: Grand Finale -->
+        <div class="slide" id="slide6">
+            <h1 style="font-size: 2rem; color: #ffd700;">HAPPY NEW YEAR<br>2026! 🥂</h1>
+            <p>Keep rocking Bhai! <br>Ye saal tera hai!</p>
+            <p style="font-size: 0.9rem;"><strong>(Chal ab Party ki date bata? 🍕)</strong></p>
+        </div>
+
+    </div>
+
+    <script>
+        function nextSlide(slideNumber) {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(slide => slide.classList.remove('active'));
+
+            const target = document.getElementById('slide' + slideNumber);
+            if(target) {
+                target.classList.add('active');
+            }
+
+            if(slideNumber === 6) {
+                startCoolFireworks();
+            }
+        }
+
+        function startCoolFireworks() {
+            const canvas = document.getElementById("canvas");
+            const ctx = canvas.getContext("2d");
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            let particles = [];
+            const colors = ['#00d2ff', '#ffd700', '#ffffff', '#ff9900'];
+
+            function Particle(x, y, color) {
+                this.x = x;
+                this.y = y;
+                this.color = color;
+                this.velocity = { x: (Math.random() - 0.5) * 12, y: (Math.random() - 0.5) * 12 };
+                this.alpha = 1;
+                this.friction = 0.95;
+            }
+            
+            Particle.prototype.draw = function() {
+                ctx.globalAlpha = this.alpha;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 3, 0, Math.PI * 2, false);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+            
+            Particle.prototype.update = function() {
+                this.velocity.x *= this.friction;
+                this.velocity.y *= this.friction;
+                this.x += this.velocity.x;
+                this.y += this.velocity.y;
+                this.alpha -= 0.02;
+                this.draw();
+            }
+            
+            function animate() {
+                requestAnimationFrame(animate);
+                ctx.fillStyle = 'rgba(0, 4, 40, 0.2)'; 
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                particles.forEach((particle, i) => {
+                    if (particle.alpha > 0) {
+                        particle.update();
+                    } else {
+                        particles.splice(i, 1);
+                    }
+                });
+            }
+
+            function shoot() {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height / 2;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                for (let i = 0; i < 40; i++) {
+                    particles.push(new Particle(x, y, color));
+                }
+            }
+            
+            animate();
+            setInterval(shoot, 400); 
+        }
+    </script>
+</body>
+</html>
